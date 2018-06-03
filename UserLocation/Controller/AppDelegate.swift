@@ -15,7 +15,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
+
+        let isUserLoggedIn = AppData.getUserName()
+        let isPasswordLoggedIn = AppData.getUserPassword()
+        if isUserLoggedIn == "" && isPasswordLoggedIn == ""{
+            let mainStoryboard = UIStoryboard(name: "Main" , bundle: nil)
+            let protectedPage = mainStoryboard.instantiateViewController(withIdentifier: "LoginVC") as! LoginVC
+            window!.rootViewController = protectedPage
+            window!.makeKeyAndVisible()
+        }
+        
         return true
     }
 
